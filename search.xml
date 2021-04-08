@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>eureka</title>
+    <url>/2021/04/08/eureka%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="单节点搭建"><a href="#单节点搭建" class="headerlink" title="单节点搭建"></a>单节点搭建</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8761</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">localhost</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">registerWithEureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">fetchRegistry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">serviceUrl:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="eureka生产环境优化"><a href="#eureka生产环境优化" class="headerlink" title="eureka生产环境优化"></a>eureka生产环境优化</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#自我保护</span></span><br><span class="line"><span class="attr">enable-self-preservation:</span> <span class="literal">false</span></span><br><span class="line"><span class="comment">#自我保护阈值</span></span><br><span class="line"><span class="attr">renewal-percent-threshold:</span> <span class="number">0.85</span></span><br><span class="line"><span class="comment">#剔除服务时间间隔</span></span><br><span class="line"><span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#关闭从readonly读取注册表</span></span><br><span class="line"><span class="attr">use-read-only-response-cache:</span> <span class="literal">false</span></span><br><span class="line"><span class="comment">#readWrite 和 readOnly 同步时间间隔</span></span><br><span class="line"><span class="attr">response-cache-update-interval-ms:</span> <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>sping</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>first_post</title>
     <url>/2021/03/31/first-post/</url>
     <content><![CDATA[]]></content>
