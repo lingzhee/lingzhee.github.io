@@ -36,4 +36,14 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>springboot2.3新特性</title>
+    <url>/2021/04/19/springboot2-3%E6%96%B0%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<p>aspringboot从2.3开始每6个月更新一次</p>
+<p>加入buildpacks功能 可将项目打包成docker镜像<br>    使用mvn spring-boot:build-image 即可在本地docker环境打包</p>
+]]></content>
+      <tags>
+        <tag>java spring</tag>
+      </tags>
+  </entry>
 </search>
