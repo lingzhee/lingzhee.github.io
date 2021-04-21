@@ -46,4 +46,117 @@
         <tag>java spring</tag>
       </tags>
   </entry>
+  <entry>
+    <title>nginx-backup</title>
+    <url>/2021/04/20/nginx-backup/</url>
+    <content><![CDATA[<p>#user  nobody;<br>worker_processes  1;</p>
+<p>#error_log  logs/error.log;<br>#error_log  logs/error.log  notice;<br>#error_log  logs/error.log  info;</p>
+<p>#pid        logs/nginx.pid;</p>
+<p>events {<br>    use epoll;<br>    worker_connections  1024;<br>}<br>stream {<br>    server {<br>        listen 2096 ;<br>        proxy_pass 45.137.216.107:30002;</p>
+<pre><code>&#125;
+</code></pre>
+<p>}</p>
+<p>http {<br>    include       mime.types;<br>    default_type  application/octet-stream;</p>
+<pre><code>#log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+#                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+#                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;
+
+#access_log  logs/access.log  main;
+
+sendfile        on;
+#tcp_nopush     on;
+
+#keepalive_timeout  0;
+keepalive_timeout  65;
+
+#gzip  on;
+
+server &#123;
+    listen       8081;
+    server_name  www.windychild.com;
+    #rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent;
+    #charset koi8-r;
+    root   /usr/local/webserver/nginx/html;
+    #access_log  logs/host.access.log  main;
+</code></pre>
+<p>​        </p>
+<pre><code>    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html &#123;
+        root   html;
+    &#125;
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ &#123;
+    #    proxy_pass   http://127.0.0.1;
+    #&#125;
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    location ~ \.php$ &#123;
+        root           html;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        include        fastcgi_params;
+    &#125;
+
+    # deny access to .htaccess files, if Apache&#39;s document root
+    # concurs with nginx&#39;s one
+    #
+    #location ~ /\.ht &#123;
+    #    deny  all;
+    #&#125;
+&#125;
+
+
+
+
+
+# HTTPS server
+#
+server &#123;
+    listen       4438 ssl http2;
+    server_name  www.windychild.com;
+</code></pre>
+<h1 id="root-usr-local-webserver-nginx-html"><a href="#root-usr-local-webserver-nginx-html" class="headerlink" title="root   /usr/local/webserver/nginx/html;"></a>root   /usr/local/webserver/nginx/html;</h1><pre><code>    ssl_certificate      cert/fullchain.pem;
+    ssl_certificate_key  cert/privkey.pem;
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+    ssl_protocols  TLSv1.3;
+    
+    ssl_ciphers  ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-CHACHA20-POLY1305:TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256;
+    ssl_prefer_server_ciphers  on;
+
+    location / &#123;
+        root   /usr/local/webserver/nginx/html;
+        index index.php index.html index.htm;
+        try_files $uri $uri/ /index.php index.php;
+        
+        if ($http_upgrade = &quot;websocket&quot;) &#123;
+            proxy_pass http://localhost:1443;  
+        &#125;
+        
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade websocket;
+        proxy_set_header Connection upgrade;
+        
+    &#125;
+</code></pre>
+<p>​<br>​<br>        location ~ .php$ {<br>                fastcgi_pass 127.0.0.1:9000;<br>                fastcgi_index index.php;<br>                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;<br>                include fastcgi_params;<br>        }</p>
+<p>​        </p>
+<pre><code>&#125;
+</code></pre>
+<p>​<br>​<br>​    </p>
+<p>}</p>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
 </search>
